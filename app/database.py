@@ -1,0 +1,20 @@
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+
+DATABASE_URL="postgresql://chirag:AGer%402006@localhost:5432/bookstore"
+
+engine = create_engine(DATABASE_URL)
+
+SessionLocal = sessionmaker(autoflush= False, autocommit = False, bind = engine)
+
+base = declarative_base()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+def create_table():
+    base.metadata.create_all(bind = engine)
