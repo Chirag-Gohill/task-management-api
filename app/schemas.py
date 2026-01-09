@@ -12,4 +12,4 @@ class BookCreate(BookBase):
 class Book(BookBase):
     id: int
     class config:
-        from_attribute = True
+        from_attribute = True 
